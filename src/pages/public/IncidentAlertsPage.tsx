@@ -3,6 +3,7 @@ import { incidents } from '../../data/incidents';
 import { IncidentStatusBadge, SeverityBadge, IncidentTypeBadge } from '../../components/ui/Badge';
 import { LiveIndicator } from '../../components/ui/LiveIndicator';
 import { AlertTriangle, Clock, MapPin, Navigation, Info, Filter, ChevronDown, ChevronUp } from 'lucide-react';
+import { PageInfoBox } from '../../components/ui/PageInfoBox';
 import clsx from 'clsx';
 
 export function IncidentAlertsPage() {
@@ -41,6 +42,18 @@ export function IncidentAlertsPage() {
           <span className="text-xs text-slate-500">Updated: 14:32:14</span>
         </div>
       </div>
+
+      <PageInfoBox
+        title="Page Functionality — Traffic Incident Alerts"
+        description="Public advisory page listing all active and recent traffic incidents across the Colombo network. Road users can check incident status, severity, and affected locations before travelling, and filter by status or severity to find relevant alerts."
+        points={[
+          'Summary cards: count of active, monitoring, and planned incidents at a glance',
+          'Filter by status (Active / Monitoring / Planned / Resolved) and severity (Critical / High / Medium / Low)',
+          'Incident list: sorted by severity — expand any entry to view location, type, affected junctions, and recommended detour',
+          'Navigation link: deep-link from any incident to the Route Guidance page for alternate route suggestions',
+          'Data is sourced from the same incident records managed by traffic officers — public view excludes sensitive operational detail',
+        ]}
+      />
 
       {/* Summary cards */}
       <div className="grid grid-cols-3 gap-3 mb-6">

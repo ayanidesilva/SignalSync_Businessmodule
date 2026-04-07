@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { auditLogs } from '../../data/auditLogs';
 import { AuditOutcomeBadge } from '../../components/ui/Badge';
 import { ScrollText, Filter, Search, Shield, Download, ChevronDown, Info, Lock } from 'lucide-react';
+import { PageInfoBox } from '../../components/ui/PageInfoBox';
 import clsx from 'clsx';
 
 const actionColors: Record<string, string> = {
@@ -55,6 +56,18 @@ export function AuditLogs() {
   return (
     <div className="space-y-5">
       {/* Header */}
+      <PageInfoBox
+        title="Page Functionality — Audit Logs & Governance"
+        description="Displays the immutable, append-only log of every action taken on the SignalSync platform. This page supports accountability reviews, compliance audits, and disciplinary investigations by providing a full, tamper-evident record of operator activity."
+        points={[
+          'Action types logged: logins/logouts, signal overrides, incident creates/updates/resolves, emergency activations, rule changes, user management, CCTV calibrations',
+          'Filter by action group, outcome (Success / Failure / Denied), or search by actor or resource',
+          'Expand any log entry to view full detail: actor, role, resource, IP, timestamp, and outcome',
+          'Export Log: download filtered audit data for compliance submission or external review',
+          'All entries are read-only and cannot be edited or deleted — governance by design',
+        ]}
+      />
+
       <div className="flex items-start justify-between flex-wrap gap-3">
         <div>
           <h1 className="text-xl font-bold text-white flex items-center gap-2">

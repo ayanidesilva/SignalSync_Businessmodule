@@ -3,6 +3,7 @@ import { incidents, type Incident } from '../../data/incidents';
 import { IncidentStatusBadge, SeverityBadge, IncidentTypeBadge } from '../../components/ui/Badge';
 import { Modal } from '../../components/ui/Modal';
 import { AlertTriangle, Plus, Search, Filter, Clock, MapPin, ChevronRight, CheckCircle, Edit, Eye } from 'lucide-react';
+import { PageInfoBox } from '../../components/ui/PageInfoBox';
 import { LiveIndicator } from '../../components/ui/LiveIndicator';
 import clsx from 'clsx';
 
@@ -41,6 +42,19 @@ export function IncidentManagement() {
           </button>
         </div>
       </div>
+
+      <PageInfoBox
+        title="Page Functionality — Incident Management"
+        description="Allows authorised traffic officers to create, monitor, update, and resolve traffic incidents across the network. Every incident is logged with type, severity, affected junction, and responsible officer."
+        points={[
+          'Create Incident: raises a new incident record with type, severity, location, and initial notes',
+          'Status filter: view incidents by Active, Monitoring, Planned, or Resolved state',
+          'Search: find incidents by location, ID, or type',
+          'Incident detail modal: view full timeline, affected junctions, assigned officer, and resolution notes',
+          'AI-created incidents are automatically generated when the detection engine flags anomalous congestion',
+          'All incident actions are recorded in the Audit Log with operator identity and timestamp',
+        ]}
+      />
 
       {/* Status Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">

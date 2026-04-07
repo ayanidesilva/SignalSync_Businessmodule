@@ -3,6 +3,7 @@ import { users, roles } from '../../data/users';
 import { UserStatusBadge, RoleBadge } from '../../components/ui/Badge';
 import { Modal } from '../../components/ui/Modal';
 import { Users, Plus, Search, Shield, CheckCircle, XCircle, Edit, Lock, Unlock, Eye } from 'lucide-react';
+import { PageInfoBox } from '../../components/ui/PageInfoBox';
 import clsx from 'clsx';
 
 export function UserManagement() {
@@ -37,6 +38,18 @@ export function UserManagement() {
           Add User
         </button>
       </div>
+
+      <PageInfoBox
+        title="Page Functionality — User & Role Management"
+        description="Allows System Administrators to manage all platform users and their access rights. Users are assigned roles that determine which modules they can access and what actions they can perform across the platform."
+        points={[
+          'Users tab: view all platform accounts with name, role, department, status, and last login',
+          'Add User: create a new account with role assignment, MFA enforcement, and department tagging',
+          'Suspend / Reactivate: toggle account access without permanently deleting the user record',
+          'Roles & Permissions tab: view all defined roles (Police Officer, Traffic Administrator, Technician, Viewer, System Administrator) and their capability boundaries',
+          'All user management actions are recorded in the Audit Log with administrator identity and timestamp',
+        ]}
+      />
 
       {/* Tabs */}
       <div className="flex border-b border-brand-border">

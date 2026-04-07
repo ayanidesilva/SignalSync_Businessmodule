@@ -3,6 +3,7 @@ import { junctions, corridors } from '../../data/junctions';
 import { CongestionBadge, SignalModeBadge, ControllerStatusBadge } from '../../components/ui/Badge';
 import { LiveIndicator } from '../../components/ui/LiveIndicator';
 import { RefreshCw, Filter, Info, Layers, MapPin, Activity } from 'lucide-react';
+import { PageInfoBox } from '../../components/ui/PageInfoBox';
 import clsx from 'clsx';
 
 const congestionColors: Record<string, string> = {
@@ -66,6 +67,18 @@ export function CongestionMap() {
           </button>
         </div>
       </div>
+
+      <PageInfoBox
+        title="Page Functionality — Colombo Traffic Map"
+        description="Public-facing real-time congestion map showing the status of all monitored junctions and corridors across Colombo. Road users can view live congestion levels, filter by severity, and identify active signal overrides."
+        points={[
+          'Junction markers: colour-coded by congestion level — green (free), amber (moderate), orange (heavy), red (severe)',
+          'Corridor summary: table view of all monitored corridors with overall congestion status and active incident flags',
+          'Filter controls: show all junctions, or filter to heavy/severe congestion or active overrides only',
+          'Junction detail panel: click any junction to see queue length, signal mode, AI confidence, and current override status',
+          'Advisory banner: prominently displays any active public advisories issued by traffic administrators',
+        ]}
+      />
 
       {/* Advisory banner */}
       <div className="p-3 panel-sm border-l-4 border-red-500 mb-5 flex items-center justify-between gap-4">

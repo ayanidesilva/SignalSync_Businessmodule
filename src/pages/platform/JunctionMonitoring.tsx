@@ -10,6 +10,7 @@ import {
   CheckCircle, XCircle, Play, Pause, SkipForward, RotateCcw, MapPin,
   TrendingUp, Signal,
 } from 'lucide-react';
+import { PageInfoBox } from '../../components/ui/PageInfoBox';
 import {
   LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from 'recharts';
@@ -59,6 +60,18 @@ export function JunctionMonitoring() {
           <span className="text-xs text-slate-500 font-mono">Updated {junction.lastUpdated}</span>
         </div>
       </div>
+
+      <PageInfoBox
+        title="Page Functionality — Junction Monitoring"
+        description="Provides a detailed, per-junction deep-dive view. Select any monitored junction from the selector bar to inspect its current congestion level, signal phase, queue lengths, and controller health in real time."
+        points={[
+          'Overview tab: live signal phase diagram, approach-by-approach queue lengths, and detection confidence',
+          'Performance tab: 24-hour throughput and delay trend charts for the selected junction',
+          'Events tab: chronological log of signal overrides, incidents, and AI adjustments at this junction',
+          'Controller tab: hardware health, uptime, firmware version, and last communication timestamp',
+          'Manual override and emergency phase controls available to authorised officers from the header',
+        ]}
+      />
 
       {/* Junction Selector */}
       <div className="panel p-3 overflow-x-auto">

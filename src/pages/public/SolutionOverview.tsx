@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Camera, Brain, Zap, Activity, Globe, Shield, CheckCircle, ArrowRight, Server, Eye, Lock, Layers, ChevronRight } from 'lucide-react';
+import { PageInfoBox } from '../../components/ui/PageInfoBox';
 
 const steps = [
   {
@@ -79,6 +80,18 @@ export function SolutionOverview() {
           </Link>
         </div>
       </div>
+
+      <PageInfoBox
+        title="Page Functionality — Solution Overview"
+        description="Technical and operational walkthrough of how SignalSync works end-to-end — from CCTV feed ingestion to public traffic advisories. Designed for government stakeholders, procurement evaluators, and technical reviewers assessing the platform."
+        points={[
+          'Six-layer architecture: each layer is explained with operational detail, technical specifications, and design rationale',
+          'Stakeholder role breakdown: capabilities and access boundaries for Police Officers, Traffic Administrators, Technicians, Viewers, and System Administrators',
+          'Governance section: explains role-based access, audit trail design, approval workflows, and failsafe mechanisms',
+          'Links to live platform: calls-to-action connecting reviewers to the live Dashboard and Traffic Map for hands-on exploration',
+          'Infrastructure-light positioning: emphasises no new roadside hardware required — key procurement advantage for government clients',
+        ]}
+      />
 
       {/* Architecture Steps */}
       <div className="space-y-6 mb-16">

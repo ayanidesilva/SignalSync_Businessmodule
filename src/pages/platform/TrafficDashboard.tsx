@@ -10,6 +10,7 @@ import {
   Activity, AlertTriangle, Camera, Zap, TrendingDown, Server,
   ArrowRight, RefreshCw, MapPin, Eye, Siren, ChevronRight,
 } from 'lucide-react';
+import { PageInfoBox } from '../../components/ui/PageInfoBox';
 import {
   AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid,
   Tooltip, Legend, ResponsiveContainer, LineChart, Line,
@@ -59,6 +60,18 @@ export function TrafficDashboard() {
           </button>
         </div>
       </div>
+
+      <PageInfoBox
+        title="Page Functionality — Traffic Operations Dashboard"
+        description="This is the central command view for authorised traffic officers. It provides a real-time overview of all monitored junctions in the Colombo network, including live KPI metrics, active incidents, congestion trends, and recent system activity."
+        points={[
+          'KPI cards show active junctions, CCTV feeds, active incidents, average delay, and AI override rate',
+          'Live junction grid displays per-junction congestion status and signal mode — click any row to drill into Junction Monitoring',
+          'Charts visualise hourly throughput and 7-day congestion trends across the network',
+          'Activity feed logs every override, incident, emergency activation, and AI alert in real time',
+          'All data refreshes live — manual Refresh button triggers a full state reload',
+        ]}
+      />
 
       {/* KPI Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-3">

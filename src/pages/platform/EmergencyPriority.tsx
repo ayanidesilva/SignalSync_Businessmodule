@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { junctions } from '../../data/junctions';
 import { Siren, AlertTriangle, CheckCircle, Shield, Zap, ChevronRight, Clock, MapPin, XCircle } from 'lucide-react';
+import { PageInfoBox } from '../../components/ui/PageInfoBox';
 import { LiveIndicator } from '../../components/ui/LiveIndicator';
 import clsx from 'clsx';
 
@@ -90,6 +91,19 @@ export function EmergencyPriority() {
           <LiveIndicator label="EC01 ACTIVE" color="red" size="md" />
         </div>
       </div>
+
+      <PageInfoBox
+        title="Page Functionality — Emergency Priority Control"
+        description="Enables authorised officers to activate pre-configured emergency priority corridors for rapid response vehicles, VIP motorcades, or critical incidents. Activation immediately overrides AI adaptive control on the affected junction sequence."
+        points={[
+          'Corridor presets: pre-defined emergency routes (e.g., Borella → Secretariat, Nugegoda → Lady Ridgeway Hospital)',
+          'Activate / Deactivate: one-click corridor control with a mandatory confirmation step',
+          'Vehicle type selection: ambulance, fire service, police response, VIP motorcade, specialist unit',
+          'Custom corridor mode: manually select specific junctions for ad-hoc priority sequences',
+          'All activations logged to audit trail with officer identity, reason, and timestamp',
+          'Affected junctions revert to AI adaptive or fixed-time mode on deactivation',
+        ]}
+      />
 
       {/* Auth Notice */}
       <div className="p-4 panel-sm border border-red-500/30 bg-red-500/5">

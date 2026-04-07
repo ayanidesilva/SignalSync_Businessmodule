@@ -3,6 +3,7 @@ import { cctvFeeds } from '../../data/cctv';
 import { FeedHealthBadge, DetectionStatusBadge } from '../../components/ui/Badge';
 import { LiveIndicator } from '../../components/ui/LiveIndicator';
 import { Camera, AlertTriangle, CheckCircle, Info, Activity, Filter, Wifi, WifiOff, Settings, Eye, Shield } from 'lucide-react';
+import { PageInfoBox } from '../../components/ui/PageInfoBox';
 import clsx from 'clsx';
 
 const healthSummary = {
@@ -38,6 +39,18 @@ export function CCTVMonitoring() {
           <span className="text-xs text-slate-500 font-mono">14:32:14</span>
         </div>
       </div>
+
+      <PageInfoBox
+        title="Page Functionality — CCTV Detection Monitoring"
+        description="Displays the health and AI detection output of every CCTV feed connected to the SignalSync platform. Technicians use this page to monitor camera status, review detection confidence, and flag feeds for recalibration."
+        points={[
+          'Feed grid: shows all cameras with health status (Stable / Degraded / Offline / Calibrating)',
+          'Filter controls: narrow by health status or show only feeds with issues',
+          'Detail panel: click any feed to see live detection output — vehicle count, queue estimate, congestion level, and confidence score',
+          'Calibration flag: mark a feed for technician review directly from the detail panel',
+          'Privacy-by-design: only anonymised detection metadata is shown — no raw footage is stored or displayed',
+        ]}
+      />
 
       {/* Privacy Notice */}
       <div className="flex items-start gap-2.5 p-3 panel-sm border-l-4 border-blue-500">

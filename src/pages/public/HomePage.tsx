@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { PageInfoBox } from '../../components/ui/PageInfoBox';
 import {
   Activity, ArrowRight, ChevronRight, Camera, Brain, Zap, Shield,
   Users, BarChart3, Globe, CheckCircle, AlertTriangle, Map, Navigation,
@@ -148,6 +149,24 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Page Info */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-4">
+        <PageInfoBox
+          title="Page Functionality — Homepage"
+          description="Public landing page and primary entry point for SignalSync. Communicates the platform's value proposition to two audiences: government/authority decision-makers evaluating procurement, and road users seeking live traffic information."
+          points={[
+            'Hero section: headline, live network stats (active junctions, incidents, delay reduction, CCTV feeds), and primary navigation CTAs',
+            'Problem framing: four data-backed statistics on the cost of fixed-time signal control in Colombo',
+            'How It Works: five-step architecture walkthrough from CCTV ingestion to public advisories',
+            'Core modules: six platform capability cards covering CCTV intelligence, AI engine, dashboard, incident control, public intelligence, and governance',
+            'Benefits split: separate value propositions for government authorities and road users',
+            'Metrics section: six simulated pilot KPIs demonstrating expected platform performance',
+            'Phased rollout: three-phase deployment model from pilot corridor to city-wide scale',
+            'Governance section: trust and accountability design principles for public-sector procurement confidence',
+          ]}
+        />
+      </div>
 
       {/* Why Fixed-Time Fails */}
       <section className="py-20 bg-brand-slate">

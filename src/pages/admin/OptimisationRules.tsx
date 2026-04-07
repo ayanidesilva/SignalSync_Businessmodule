@@ -3,6 +3,7 @@ import { optimisationProfiles } from '../../data/optimisationRules';
 import { RuleStateBadge } from '../../components/ui/Badge';
 import { Modal } from '../../components/ui/Modal';
 import { Settings, Plus, CheckCircle, AlertTriangle, Clock, Shield, Edit, Copy, Archive, ChevronDown, ChevronUp, Info, Zap } from 'lucide-react';
+import { PageInfoBox } from '../../components/ui/PageInfoBox';
 import clsx from 'clsx';
 
 export function OptimisationRules() {
@@ -31,6 +32,19 @@ export function OptimisationRules() {
           New Profile
         </button>
       </div>
+
+      <PageInfoBox
+        title="Page Functionality — Optimisation Rules & Configuration"
+        description="Enables Traffic Administrators to create, review, and publish adaptive signal timing profiles that govern how the AI engine allocates green time at each junction. All profile changes go through a mandatory approval workflow before taking effect on live junctions."
+        points={[
+          'Profile list: view all timing profiles by state — Active, Draft, Under Review, or Archived',
+          'Expand any profile to see its phase durations, safety constraints, and applicable time-of-day conditions',
+          'New Profile: create a draft timing configuration with custom green time ranges, pedestrian phase settings, and cycle limits',
+          'Approval workflow: drafts must be reviewed and approved by a System Administrator before publishing',
+          'Publish action: pushes an approved profile to live junction controllers and logs the change to the Audit Log',
+          'Copy / Archive: duplicate an existing profile for modification, or retire outdated configurations',
+        ]}
+      />
 
       {/* Governance notice */}
       <div className="flex items-start gap-3 p-4 panel-sm border-l-4 border-brand-cyan">

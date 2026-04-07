@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { routeScenarios, presetOrigins, presetDestinations } from '../../data/routes';
 import { Navigation, Clock, AlertTriangle, CheckCircle, Info, ArrowRight, MapPin, ChevronRight } from 'lucide-react';
+import { PageInfoBox } from '../../components/ui/PageInfoBox';
 import clsx from 'clsx';
 
 const congestionColors = {
@@ -30,6 +31,18 @@ export function RouteGuidance() {
           AI-assisted route recommendations based on real-time congestion data across Colombo's monitored corridors.
         </p>
       </div>
+
+      <PageInfoBox
+        title="Page Functionality — Route Guidance"
+        description="AI-assisted route recommendation tool for public road users. Select an origin and destination from Colombo's monitored corridors to receive ranked route options with estimated travel times, congestion levels, and incident warnings."
+        points={[
+          'Origin / Destination selectors: choose from preset monitored locations across Colombo',
+          'Route options: up to 3 ranked alternatives — fastest, balanced, and incident-free — with estimated time and congestion level',
+          'Route detail: per-segment breakdown showing congestion level and any active incidents along the path',
+          'Recommendation rationale: each route is labelled with the AI reasoning (e.g., "Avoids INC-0041 at Liberty Roundabout")',
+          'Prototype simulation: uses preset scenario data to demonstrate the live recommendation experience',
+        ]}
+      />
 
       {/* Simulation Notice */}
       <div className="flex items-start gap-2 p-3 panel-sm border-l-4 border-brand-cyan mb-6">

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { congestionTrend7Day, overrideFrequency, junctionPerformance, hourlyThroughput, kpiSummary } from '../../data/metrics';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, AreaChart, Area, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
 import { BarChart3, Download, Filter, Calendar, TrendingUp, TrendingDown, Activity, AlertTriangle, Zap, ChevronDown } from 'lucide-react';
+import { PageInfoBox } from '../../components/ui/PageInfoBox';
 import clsx from 'clsx';
 
 const exportFormats = ['PDF Report', 'CSV Data', 'Excel Workbook'];
@@ -14,6 +15,18 @@ export function ReportsAnalytics() {
   return (
     <div className="space-y-5">
       {/* Header */}
+      <PageInfoBox
+        title="Page Functionality — Reports & Analytics"
+        description="Provides traffic administrators with exportable performance reports, KPI summaries, and trend visualisations across the network. Data can be filtered by date range and corridor, and exported in PDF, CSV, or Excel format for government reporting."
+        points={[
+          'KPI summary: delay reduction, throughput improvement, incidents resolved, and AI accuracy rate',
+          'Congestion trend chart: 7-day corridor-level congestion index across the network',
+          'Junction performance radar: comparative per-junction efficiency across key metrics',
+          'Override frequency chart: bar chart of manual overrides per junction — supports accountability review',
+          'Export controls: generate PDF reports, CSV data exports, or Excel workbooks with selected date range',
+        ]}
+      />
+
       <div className="flex items-start justify-between flex-wrap gap-3">
         <div>
           <h1 className="text-xl font-bold text-white">Reports & Analytics</h1>
