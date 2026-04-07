@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SignalSync — User Manual</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Georgia', serif; font-size: 11pt; color: #1a1a1a; background: #fff; line-height: 1.65; }
+  .page { max-width: 800px; margin: 0 auto; padding: 48px 56px; }
+
+  /* Title page */
+  .title-page { text-align: center; padding: 80px 56px 60px; border-bottom: 2px solid #1a3a6e; margin-bottom: 40px; }
+  .title-page .logo { display: inline-block; background: #1a3a6e; color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 22pt; font-weight: bold; letter-spacing: 1px; margin-bottom: 16px; font-family: 'Arial', sans-serif; }
+  .title-page h1 { font-size: 20pt; color: #1a3a6e; margin-bottom: 8px; }
+  .title-page .sub { font-size: 12pt; color: #555; margin-bottom: 28px; }
+  .title-page .meta { font-size: 10pt; color: #666; line-height: 2; }
+  .title-page .meta strong { color: #1a1a1a; }
+
+  /* Headings */
+  h2 { font-size: 14pt; color: #1a3a6e; border-bottom: 1.5px solid #1a3a6e; padding-bottom: 5px; margin: 36px 0 14px; font-family: 'Arial', sans-serif; }
+  h3 { font-size: 11.5pt; color: #2c2c2c; margin: 20px 0 8px; font-family: 'Arial', sans-serif; }
+  h4 { font-size: 10.5pt; color: #1a3a6e; margin: 14px 0 4px; font-family: 'Arial', sans-serif; font-weight: bold; }
+
+  p { margin-bottom: 10px; }
+  ul { margin: 6px 0 10px 20px; }
+  li { margin-bottom: 3px; }
+
+  /* Screenshot placeholder */
+  .screenshot {
+    border: 1.5px dashed #b0b8cc;
+    background: #f5f7fb;
+    border-radius: 6px;
+    padding: 20px 16px;
+    margin: 12px 0 20px;
+    text-align: center;
+    color: #6b7898;
+    font-family: 'Arial', sans-serif;
+    font-size: 9.5pt;
+  }
+  .screenshot .ss-label { font-weight: bold; font-size: 10pt; color: #1a3a6e; margin-bottom: 4px; }
+  .screenshot .ss-route { font-family: 'Courier New', monospace; font-size: 9pt; color: #888; }
+
+  /* Section labels */
+  .section-tag { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 8.5pt; font-weight: bold; font-family: 'Arial', sans-serif; margin-bottom: 6px; }
+  .tag-public { background: #e6f4ea; color: #2a6e3f; border: 1px solid #a8d5b5; }
+  .tag-platform { background: #e6f0fb; color: #1a3a6e; border: 1px solid #a8c0e8; }
+  .tag-admin { background: #f2eafa; color: #5b2d8e; border: 1px solid #c9a8e8; }
+  .tag-limit { background: #fff3e0; color: #8a4f00; border: 1px solid #f5c97a; }
+
+  /* Info box */
+  .info-box { background: #f0f5ff; border-left: 4px solid #1a3a6e; padding: 10px 14px; margin: 14px 0; border-radius: 0 6px 6px 0; font-size: 10.5pt; }
+  .warn-box { background: #fff8e6; border-left: 4px solid #e0a000; padding: 10px 14px; margin: 14px 0; border-radius: 0 6px 6px 0; font-size: 10.5pt; }
+
+  /* Two-col */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 8px 0; }
+
+  /* Page break for print */
+  @media print {
+    h2 { page-break-before: always; }
+    h2:first-of-type { page-break-before: avoid; }
+    .screenshot { min-height: 120px; }
+    .no-break { page-break-inside: avoid; }
+    body { font-size: 10.5pt; }
+  }
+  @media screen {
+    body { background: #e8ecf0; }
+    .page { background: #fff; box-shadow: 0 2px 16px rgba(0,0,0,0.12); margin: 24px auto; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- TITLE PAGE -->
+  <div class="title-page">
+    <div class="logo">SignalSync</div>
+    <h1>User Manual</h1>
+    <p class="sub">AI-Powered Smart Traffic Management Platform · Colombo, Sri Lanka</p>
+    <div class="meta">
+      <strong>Module:</strong> Business Information Systems — Final Year Coursework<br/>
+      <strong>Client Organisation:</strong> Road Development Authority of Sri Lanka (RDA)<br/>
+      <strong>Prototype Type:</strong> High-Fidelity B2G Web Application<br/>
+      <strong>Total Pages:</strong> 14 (5 Public · 7 Operations Platform · 2 Administration)<br/>
+      <strong>Technology Stack:</strong> React 18 · TypeScript · Vite 5 · Tailwind CSS v3 · Recharts
+    </div>
+  </div>
+
+  <!-- 1. INTRODUCTION -->
+  <h2>1. Introduction</h2>
+  <p>
+    SignalSync is a Business-to-Government (B2G) smart traffic management platform designed to address Colombo's chronic urban congestion. The system replaces outdated fixed-time traffic signals with AI-driven adaptive control, using the city's existing CCTV infrastructure rather than requiring expensive new hardware installation.
+  </p>
+  <p>
+    The platform serves two distinct audiences: <strong>traffic management officers</strong> who use a secure operations dashboard to monitor junctions, manage incidents, and activate emergency corridors; and <strong>the general public</strong>, who access a citizen-facing portal for live congestion maps, incident alerts, and route guidance.
+  </p>
+  <div class="info-box">
+    <strong>How to access the prototype:</strong> Run <code>npm run dev</code> in the <code>signalsync/</code> directory. The site serves at <strong>http://localhost:5173</strong>. No login is required — navigate directly to any page via the URLs shown in each section below.
+  </div>
+
+  <!-- 2. SITE STRUCTURE -->
+  <h2>2. Site Structure Overview</h2>
+  <p>The prototype is divided into three access zones:</p>
+  <ul>
+    <li><strong>Public Portal</strong> — five pages accessible to any citizen, no authentication required.</li>
+    <li><strong>Operations Platform</strong> — seven pages for trained traffic management officers (simulated; no real login gate in the prototype).</li>
+    <li><strong>Administration</strong> — two pages for system administrators managing users and AI configuration rules.</li>
+  </ul>
+  <p>The public-facing pages use a lighter navy/white layout with a sticky navigation bar. Platform and admin pages use a dark dashboard layout with a collapsible sidebar, breadcrumb trail, and a persistent live-incident alert banner.</p>
+
+  <!-- 3. PUBLIC PAGES -->
+  <h2>3. Public Portal Pages</h2>
+
+  <div class="no-break">
+    <span class="section-tag tag-public">Public · /</span>
+    <h3>3.1 Homepage</h3>
+    <p>The homepage is the primary entry point for government stakeholders and the public. It opens with a hero section displaying four live network KPIs (junctions monitored, vehicles processed per hour, average delay reduction, and system uptime). Below this, the page explains the problem with fixed-time signals, illustrates the five-layer detection-to-signal workflow, presents the six core platform modules as clickable cards, outlines the three-phase pilot-to-scale rollout plan, and closes with a governance overview and call to action.</p>
+    <div class="screenshot">
+      <div class="ss-label">SCREENSHOT — Homepage</div>
+      <div class="ss-route">http://localhost:5173/</div>
+      <p>Paste full-page screenshot here</p>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="section-tag tag-public">Public · /solution</span>
+    <h3>3.2 Solution Overview</h3>
+    <p>A detailed technical and business architecture page. It walks through six sequential architecture layers — from CCTV edge detection and AI inference to the signal controller API and audit logging — with specification callouts (e.g. &lt;150ms latency, &gt;92% detection accuracy). A stakeholder roles panel identifies responsibilities for RDA, Traffic Police, and Colombo Municipal Council. Five design principles (privacy-first, human-in-the-loop, open standards, infrastructure-light, audit-native) are presented as cards.</p>
+    <div class="screenshot">
+      <div class="ss-label">SCREENSHOT — Solution Overview</div>
+      <div class="ss-route">http://localhost:5173/solution</div>
+      <p>Paste full-page screenshot here</p>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="section-tag tag-public">Public · /map</span>
+    <h3>3.3 Congestion Map</h3>
+    <p>A simulated live map of Colombo showing 12 monitored junctions. Each junction is represented by a colour-coded marker (green = free flow, amber = moderate, orange = heavy, red = severe). Clicking a marker opens a tooltip displaying queue length, current signal mode, and average delay. A corridor status panel on the right lists the five major traffic corridors. Users can filter the map by congestion level using the filter bar.</p>
+    <div class="screenshot">
+      <div class="ss-label">SCREENSHOT — Congestion Map</div>
+      <div class="ss-route">http://localhost:5173/map</div>
+      <p>Paste full-page screenshot here</p>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="section-tag tag-public">Public · /alerts</span>
+    <h3>3.4 Incident Alerts</h3>
+    <p>A real-time public incident feed. Four summary count cards at the top display the number of Active, Monitoring, Planned, and Resolved incidents. Each incident is shown as an expandable accordion card showing incident type, severity, affected corridor, and a diversion advisory (e.g. "Recommend Marine Drive alternate — avoid Galle Rd between Bambalapitiya and Liberty Roundabout"). Filters allow the user to narrow results by status or severity.</p>
+    <div class="screenshot">
+      <div class="ss-label">SCREENSHOT — Incident Alerts</div>
+      <div class="ss-route">http://localhost:5173/alerts</div>
+      <p>Paste full-page screenshot here</p>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="section-tag tag-public">Public · /routes</span>
+    <h3>3.5 Route Guidance</h3>
+    <p>Provides AI-ranked alternative routes for common Colombo journeys. Users select a journey scenario (e.g. Bandaranaike Airport → Fort) and the system returns ranked route options, each showing estimated travel time, congestion level badge, and via-junction list. The optimal route is highlighted with a "Recommended" badge. This page is intended to reduce congestion by distributing drivers across less-congested alternatives.</p>
+    <div class="screenshot">
+      <div class="ss-label">SCREENSHOT — Route Guidance</div>
+      <div class="ss-route">http://localhost:5173/routes</div>
+      <p>Paste full-page screenshot here</p>
+    </div>
+  </div>
+
+  <!-- 4. PLATFORM PAGES -->
+  <h2>4. Operations Platform Pages</h2>
+  <div class="info-box">The platform is accessed via the "Platform Login" or "Live Dashboard" buttons in the public navigation bar. In the prototype all platform pages are freely accessible — authentication enforcement is a planned implementation (see Section 6).</div>
+
+  <div class="no-break">
+    <span class="section-tag tag-platform">Platform · /platform/dashboard</span>
+    <h3>4.1 Traffic Operations Dashboard</h3>
+    <p>The primary operator home screen. Six metric cards display network-wide KPIs. Below, operators can view all 12 junctions in either a card grid or table list, each showing congestion badge, signal mode, queue length, and CCTV health. An AreaChart visualises hourly throughput over the past 17 time points. Active incidents and a recent activity feed are shown in the right panel. Quick-action buttons provide shortcuts to Create Incident, Activate Emergency Priority, and Generate Report.</p>
+    <div class="screenshot">
+      <div class="ss-label">SCREENSHOT — Traffic Operations Dashboard</div>
+      <div class="ss-route">http://localhost:5173/platform/dashboard</div>
+      <p>Paste full-page screenshot here</p>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="section-tag tag-platform">Platform · /platform/junctions</span>
+    <h3>4.2 Junction Monitoring</h3>
+    <p>A deep-dive view for any individual junction. A horizontal selector at the top lists all 12 junctions; clicking one loads its data. Four tabs provide: (1) Overview — live signal phase bar showing green-time allocation per direction; (2) Performance — AreaChart for throughput and LineChart for delay; (3) Events — recent override and incident history; (4) Controller — hardware health status and safety rule checklist. A "Manual Override" button opens a modal where operators must log a reason before overriding the AI's signal plan.</p>
+    <div class="screenshot">
+      <div class="ss-label">SCREENSHOT — Junction Monitoring</div>
+      <div class="ss-route">http://localhost:5173/platform/junctions</div>
+      <p>Paste full-page screenshot here</p>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="section-tag tag-platform">Platform · /platform/cctv</span>
+    <h3>4.3 CCTV Intelligence</h3>
+    <p>Simulates the live camera feed monitoring interface. Camera feed tiles display a stylised video preview with detection overlay bounding boxes, a detection confidence bar (indicating AI accuracy on that feed), and a health status badge (Healthy / Degraded / Offline). Clicking a tile opens a detail panel with full feed metadata. A privacy notice confirms that no video footage leaves the junction — only anonymised queue metrics are transmitted.</p>
+    <div class="screenshot">
+      <div class="ss-label">SCREENSHOT — CCTV Intelligence</div>
+      <div class="ss-route">http://localhost:5173/platform/cctv</div>
+      <p>Paste full-page screenshot here</p>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="section-tag tag-platform">Platform · /platform/incidents</span>
+    <h3>4.4 Incident Management</h3>
+    <p>Full incident lifecycle management. Status summary cards (Active / Monitoring / Planned / Resolved) function as clickable filters. The incident table shows ID, type, severity, location, corridor, status, and whether a signal override was triggered. The "Create Incident" button opens a modal with fields for type, severity, location, affected corridor, estimated clearance time, full description, diversion advisory text, signal override activation, and public advisory publication controls. A "View" icon on each row opens a read-only detail modal.</p>
+    <div class="screenshot">
+      <div class="ss-label">SCREENSHOT — Incident Management</div>
+      <div class="ss-route">http://localhost:5173/platform/incidents</div>
+      <p>Paste full-page screenshot here</p>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="section-tag tag-platform">Platform · /platform/emergency</span>
+    <h3>4.5 Emergency Priority Corridors</h3>
+    <p>Enables operators to activate a green-wave priority corridor for emergency vehicles or VIP convoys. Pre-configured corridors (e.g. Galle Road Hospital Corridor) list the junction sequence the vehicle will pass through. A safety validation checklist must be satisfied before activation is permitted. The "Activate Corridor" modal requires the operator to select vehicle type (Ambulance, Fire Engine, Police Convoy, VIP). A custom corridor builder allows ad-hoc route creation for non-standard emergencies.</p>
+    <div class="screenshot">
+      <div class="ss-label">SCREENSHOT — Emergency Priority</div>
+      <div class="ss-route">http://localhost:5173/platform/emergency</div>
+      <p>Paste full-page screenshot here</p>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="section-tag tag-platform">Platform · /platform/reports</span>
+    <h3>4.6 Reports &amp; Analytics</h3>
+    <p>Comprehensive analytics across five tabs: Network Overview (throughput AreaChart), Congestion Trends (7-day LineChart by corridor), Junction Performance (BarChart ranking junctions by efficiency), Override Analysis (frequency breakdown by junction and reason type), and System Health (uptime timeline and error rate metrics). Date range and corridor filters apply across all tabs. An Export button provides format options (PDF, CSV, Excel) for management reporting.</p>
+    <div class="screenshot">
+      <div class="ss-label">SCREENSHOT — Reports &amp; Analytics</div>
+      <div class="ss-route">http://localhost:5173/platform/reports</div>
+      <p>Paste full-page screenshot here</p>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="section-tag tag-platform">Platform · /platform/audit</span>
+    <h3>4.7 Audit Logs</h3>
+    <p>An immutable chronological record of all system actions. Every login, signal override, incident creation, emergency activation, rule change, and user management action is captured. Each log entry is expandable to reveal full action metadata, the actor's identity, and the system outcome. A notice states that logs are cryptographically hashed (SHA-256) and cannot be edited or deleted. Filters allow searching by action group (Authentication, Signal Control, Incidents, Administration) and by outcome (Success, Warning, Failure). A pending approvals panel surfaces rule changes awaiting sign-off.</p>
+    <div class="screenshot">
+      <div class="ss-label">SCREENSHOT — Audit Logs</div>
+      <div class="ss-route">http://localhost:5173/platform/audit</div>
+      <p>Paste full-page screenshot here</p>
+    </div>
+  </div>
+
+  <!-- 5. ADMIN PAGES -->
+  <h2>5. Administration Pages</h2>
+
+  <div class="no-break">
+    <span class="section-tag tag-admin">Admin · /admin/users</span>
+    <h3>5.1 User &amp; Role Management</h3>
+    <p>The RBAC (Role-Based Access Control) management interface. The Users tab lists all accounts with role badge, active/inactive status, MFA indicator, last login timestamp, and assigned geographic zones. Permission flags (canOverride, canPublishAdvisory, canModifyRules) are shown inline. The Roles tab presents six defined roles — Super Admin, Traffic Manager, Field Officer, Analyst, Auditor, Read-Only — each as a card listing the permissions granted. The "Create User" modal allows administrators to set role, zone assignments, and enforce MFA.</p>
+    <div class="screenshot">
+      <div class="ss-label">SCREENSHOT — User &amp; Role Management</div>
+      <div class="ss-route">http://localhost:5173/admin/users</div>
+      <p>Paste full-page screenshot here</p>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="section-tag tag-admin">Admin · /admin/rules</span>
+    <h3>5.2 Optimisation Rules</h3>
+    <p>Configuration panel for the AI signal optimisation engine. Six timing profiles are shown (Rush Hour Adaptive, Night-time Fixed, Emergency Override, Pedestrian Priority, Event Mode, Weekend Relaxed). Each expandable profile card displays minimum/maximum green time, cycle time, pedestrian buffer duration, and queue activation threshold. A signal phase bar visualises the relative green-time split across the four approach directions. A built-in approval workflow enforces the change path: Draft → Pending Approval → Active → Archived. Rule changes cannot be deployed without sign-off from a Traffic Manager or higher role.</p>
+    <div class="screenshot">
+      <div class="ss-label">SCREENSHOT — Optimisation Rules</div>
+      <div class="ss-route">http://localhost:5173/admin/rules</div>
+      <p>Paste full-page screenshot here</p>
+    </div>
+  </div>
+
+  <!-- 6. LIMITATIONS -->
+  <h2>6. Prototype Limitations &amp; Planned Future Implementation</h2>
+  <div class="warn-box"><strong>Note:</strong> The limitations listed below reflect deliberate design scope decisions and time/technical constraints of this coursework task — not failures of execution. Each represents a planned feature with a clear implementation path.</div>
+
+  <div class="two-col">
+    <div class="no-break">
+      <span class="section-tag tag-limit">Planned</span>
+      <h4>Authentication &amp; Session Management</h4>
+      <p>The prototype allows direct navigation to all platform and admin pages without login. Full implementation requires JWT-based authentication, session expiry, and route guards in React Router redirecting unauthenticated users to a login page.</p>
+    </div>
+    <div class="no-break">
+      <span class="section-tag tag-limit">Planned</span>
+      <h4>Live Data &amp; WebSocket Feeds</h4>
+      <p>All metrics, junction states, and CCTV data are static mock arrays. Production requires a real-time WebSocket connection to junction controllers, updating the UI every 30 seconds. KPI metrics would be served from a time-series database.</p>
+    </div>
+    <div class="no-break">
+      <span class="section-tag tag-limit">Planned</span>
+      <h4>Real CCTV Video Streams</h4>
+      <p>The CCTV page simulates feeds with styled placeholder tiles. Full implementation would embed authenticated RTSP-to-HLS video streams and overlay real-time AI detection bounding boxes from the edge processing unit.</p>
+    </div>
+    <div class="no-break">
+      <span class="section-tag tag-limit">Planned</span>
+      <h4>Interactive GIS Map</h4>
+      <p>The Congestion Map uses an SVG background image with fixed-position markers. Production would integrate Mapbox GL JS or Leaflet with real GPS coordinates, live polyline corridor overlays, and tile-based street maps.</p>
+    </div>
+    <div class="no-break">
+      <span class="section-tag tag-limit">Planned</span>
+      <h4>Report Export</h4>
+      <p>The Export button on the Reports page shows a format dropdown but does not generate files. Implementation requires server-side PDF generation (e.g. Puppeteer or WeasyPrint) and CSV serialisation of filtered query results.</p>
+    </div>
+    <div class="no-break">
+      <span class="section-tag tag-limit">Planned</span>
+      <h4>Incident &amp; Rule Write Operations</h4>
+      <p>Forms (Create Incident, Create User, Create Rule Profile) submit data but do not persist it — the page state resets on reload. Full implementation requires a REST API backed by a relational database (e.g. PostgreSQL) with change events broadcast to connected clients.</p>
+    </div>
+    <div class="no-break">
+      <span class="section-tag tag-limit">Planned</span>
+      <h4>Email / SMS Notification Dispatch</h4>
+      <p>When an incident is created, a success message states "Notifications dispatched." In production, this would trigger Twilio SMS alerts to registered field officers and email advisories to subscribed citizens via a notification microservice.</p>
+    </div>
+    <div class="no-break">
+      <span class="section-tag tag-limit">Planned</span>
+      <h4>AI Model Confidence Feedback Loop</h4>
+      <p>The CCTV page shows static detection confidence percentages. The production system would allow operators to flag incorrect detections, feeding corrections back into a model retraining pipeline to improve accuracy over time.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="margin-top: 48px; padding-top: 16px; border-top: 1px solid #ccc; font-size: 9pt; color: #888; text-align: center; font-family: Arial, sans-serif;">
+    SignalSync — User Manual &nbsp;·&nbsp; Final Year BIS Coursework &nbsp;·&nbsp; Prototype Demonstration &nbsp;·&nbsp; Road Development Authority of Sri Lanka
+  </div>
+
+</div>
+</body>
+</html>
