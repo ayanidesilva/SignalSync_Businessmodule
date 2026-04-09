@@ -1,0 +1,35 @@
+# Cloud Computing Analysis — SignalSync
+
+## Selected Solution: Microsoft Azure Government (PaaS/IaaS, Community Cloud)
+
+The selected cloud solution is **Microsoft Azure Government**, a dedicated instance of Microsoft Azure provisioned exclusively for government and public-sector entities. This is categorised as a **community cloud** — a cloud model that restricts access to organisations sharing common compliance requirements (Mell and Grance, 2011) — combining the economies of a public cloud with the regulatory controls of a private deployment. The platform spans both **PaaS and IaaS** tiers, providing managed infrastructure alongside pre-configured platform services.
+
+## Specific Relevance to SignalSync
+
+SignalSync is a B2G platform operating within a highly regulated public-safety environment. Azure Government's relevance is direct and concrete across four integration points. First, **Azure IoT Hub** would ingest anonymised detection metadata (vehicle counts, queue estimates, congestion indices) transmitted by edge-processing nodes at each junction — replacing any bespoke data pipeline. Second, **Azure Kubernetes Service (AKS)** would host the adaptive optimisation engine and web application backend, providing auto-scaling during peak congestion periods (e.g., morning rush hours) without provisioning dedicated servers. Third, **Azure Active Directory (Azure AD)** maps precisely to SignalSync's role-based access control model — Police Officers, Traffic Administrators, Field Technicians, and System Administrators can be managed through Azure AD groups, with conditional access policies enforcing separation of duties. Fourth, **Azure Monitor and Log Analytics** would serve as the persistent backend for SignalSync's audit log requirements, providing tamper-evident, queryable records of every override event and configuration change.
+
+## Cost Implications
+
+Azure Government operates on an **operational expenditure (OpEx)** model, replacing upfront capital expenditure on physical server infrastructure. For a government pilot deployment, this reduces financial risk: costs scale with actual usage rather than being fixed regardless of load (Microsoft, 2024). However, ongoing subscription costs must be budgeted across the contract lifecycle, and data egress charges apply when exporting audit or analytics data to external systems.
+
+## Security Implications
+
+Azure Government meets **FedRAMP High, ISO 27001, and SOC 2 Type II** compliance standards, which are directly relevant to a platform handling real-time traffic control and public-safety data (Microsoft Azure, 2024). Data residency is guaranteed within designated government regions. The primary security risk is **vendor dependency**: if Microsoft's infrastructure experiences an outage, fallback to fixed-time signal operation would be required — a risk mitigated by SignalSync's built-in controller failsafe.
+
+## Advantages Over Traditional IT Infrastructure
+
+Compared to on-premise server infrastructure, Azure Government offers elastic scalability (handling peak traffic demand without hardware procurement), built-in geographic redundancy, and managed patching — reducing the internal IT burden on a government traffic authority. Mell and Grance (2011) identify resource pooling and rapid elasticity as defining cloud characteristics that traditional infrastructure cannot cost-effectively replicate at small deployment scales.
+
+## Disadvantages
+
+The principal disadvantage is **network latency**: Azure Government routes traffic through regional data centres, introducing potential millisecond-level delays in signal command transmission. For SignalSync's sub-3-second end-to-end command latency requirement, edge processing must remain local, with Azure used for analytics, management, and audit functions rather than real-time signal actuation. Additionally, **vendor lock-in** is a long-term procurement risk, as migrating away from Azure-specific services (AKS, IoT Hub) to an alternative provider would require significant re-engineering.
+
+---
+
+**References**
+
+Mell, P. and Grance, T. (2011) *The NIST Definition of Cloud Computing*. NIST Special Publication 800-145. Gaithersburg: National Institute of Standards and Technology.
+
+Microsoft (2024) *Azure Government Overview*. Available at: https://learn.microsoft.com/en-us/azure/azure-government/documentation-government-welcome [Accessed: April 2026].
+
+Microsoft Azure (2024) *Azure compliance documentation: FedRAMP High*. Available at: https://learn.microsoft.com/en-us/azure/compliance/offerings/offering-fedramp [Accessed: April 2026].
